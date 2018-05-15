@@ -8,6 +8,7 @@ Source0:		https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.t
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	readline-devel
 BuildRequires:	asciidoc
+BuildRequires:	a2x
 BuildRequires:	pkgconfig(libsystemd)
 Requires:		dbus
 Requires:		systemd
