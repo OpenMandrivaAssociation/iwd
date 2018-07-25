@@ -1,17 +1,17 @@
-Summary:		Wireless daemon for Linux
-Name:			iwd
-Version:		0.3
-Release:		1
-License:		LGPLv2+
-URL:			https://lists.01.org/mailman/listinfo/iwd
-Source0:		https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.tar.xz
+Summary:	Wireless daemon for Linux
+Name:		iwd
+Version:	0.4
+Release:	1
+License:	LGPLv2+
+URL:		https://lists.01.org/mailman/listinfo/iwd
+Source0:	https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.tar.xz
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	readline-devel
 BuildRequires:	asciidoc
 BuildRequires:	a2x
 BuildRequires:	pkgconfig(libsystemd)
-Requires:		dbus
-Requires:		systemd
+Requires:	dbus
+Requires:	systemd
 
 %description
 The daemon and utilities for controlling and configuring the Wi-Fi network
@@ -35,6 +35,6 @@ install tools/hwsim %{buildroot}%{_bindir}
 %{_bindir}/iwmon
 %{_bindir}/hwsim
 %{_libexecdir}/iwd
-%{_unitdir}/iwd.service
+%{_systemunitdir}/iwd.service
 %{_datadir}/dbus-1/system.d/iwd-dbus.conf
 %{_mandir}/man1/iwmon.1*
