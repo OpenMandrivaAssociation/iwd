@@ -1,6 +1,6 @@
 Summary:	Wireless daemon for Linux
 Name:		iwd
-Version:	0.4
+Version:	0.7
 Release:	1
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
@@ -18,7 +18,7 @@ The daemon and utilities for controlling and configuring the Wi-Fi network
 hardware.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 %configure --enable-docs
