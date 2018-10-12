@@ -22,12 +22,18 @@ hardware.
 %autosetup -p1
 
 %build
-%configure --enable-docs
+%configure \
+  --enable-docs \
+  --enable-sim-hardcoded \
+  --enable-ofono \
+  --enable-wired \
+  --enable-hwsim \
+  --enable-tools
+
 %make_build
 
 %install
 %make_install
-install tools/hwsim %{buildroot}%{_bindir}
 
 %files
 %doc AUTHORS README TODO ChangeLog
