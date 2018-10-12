@@ -42,7 +42,7 @@ hardware.
 %{_bindir}/iwmon
 %{_bindir}/hwsim
 %{_libexecdir}/iwd
-%{_systemunitdir}/iwd.service
+%{_unitdir}/iwd.service
 %{_datadir}/dbus-1/system.d/*.conf
 %{_datadir}/dbus-1/system-services/*.service
 %{_mandir}/man1/iwmon.1*
