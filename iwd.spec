@@ -38,6 +38,7 @@ hardware.
 %files
 %doc AUTHORS README TODO ChangeLog
 %license COPYING
+%{_prefix}/lib/modules-load.d/*.conf
 %{_bindir}/iwctl
 %{_bindir}/iwmon
 %{_bindir}/hwsim
