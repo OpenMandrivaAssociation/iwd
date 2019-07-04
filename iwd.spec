@@ -1,7 +1,7 @@
 Summary:	Wireless daemon for Linux
 Name:		iwd
 Version:	0.18
-Release:	1
+Release:	2
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
 Source0:	https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.tar.xz
@@ -11,6 +11,7 @@ BuildRequires:	asciidoc
 BuildRequires:	a2x
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd-macros
+BuildRequires:	pkgconfig(ell) >= 0.20
 Requires:	dbus
 Requires:	systemd
 
@@ -23,6 +24,8 @@ hardware.
 
 %build
 %configure \
+  --with-systemd-unitdir=%{_unitdir} \
+  --enable-external-ell \
   --enable-docs \
   --enable-sim-hardcoded \
   --enable-ofono \
