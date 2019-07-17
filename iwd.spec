@@ -1,7 +1,7 @@
 Summary:	Wireless daemon for Linux
 Name:		iwd
 Version:	0.18
-Release:	2
+Release:	3
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
 Source0:	https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.tar.xz
@@ -38,6 +38,14 @@ hardware.
 %install
 %make_install
 
+install -d %{buildroot}%{_presetdir}
+cat > %{buildroot}%{_presetdir}/86-iwd.preset << EOF
+enable iwd.service
+EOF
+
+%post
+%systemd_post iwd.service
+
 %files
 %doc AUTHORS README TODO ChangeLog
 %license COPYING
@@ -47,6 +55,7 @@ hardware.
 %{_bindir}/hwsim
 %{_libexecdir}/iwd
 %{_libexecdir}/ead
+%{_presetdir}/86-iwd.preset
 %{_unitdir}/*.service
 %{_datadir}/dbus-1/system.d/*.conf
 %{_datadir}/dbus-1/system-services/*.service
