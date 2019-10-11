@@ -9,6 +9,7 @@ BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	readline-devel
 BuildRequires:	asciidoc
 BuildRequires:	a2x
+BuildRequires:	python-docutils
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd-macros
 BuildRequires:	pkgconfig(ell) >= 0.24
