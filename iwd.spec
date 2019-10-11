@@ -61,3 +61,8 @@ EOF
 %{_datadir}/dbus-1/system.d/*.conf
 %{_datadir}/dbus-1/system-services/*.service
 %{_mandir}/man1/iwmon.1*
+%{_mandir}/man1/hwsim.1.*
+%{_mandir}/man1/iwctl.1.*
+%{_mandir}/man5/iwd.conf.5.*
+%{_mandir}/man8/ead.8.*
+%{_mandir}/man8/iwd.8.*
