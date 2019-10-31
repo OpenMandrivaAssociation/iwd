@@ -51,6 +51,7 @@ EOF
 %doc AUTHORS README TODO ChangeLog
 %license COPYING
 %{_prefix}/lib/modules-load.d/*.conf
+/lib/systemd/network/80-iwd.link
 %{_bindir}/iwctl
 %{_bindir}/iwmon
 %{_bindir}/hwsim
