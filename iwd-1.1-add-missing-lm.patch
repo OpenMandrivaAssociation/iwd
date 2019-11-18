@@ -1,0 +1,12 @@
+diff -Naur iwd-1.1/Makefile.am iwd-1.1.tpg/Makefile.am
+--- iwd-1.1/Makefile.am	2019-11-14 20:04:59.000000000 +0000
++++ iwd-1.1.tpg/Makefile.am	2019-11-18 15:09:56.527973125 +0000
+@@ -230,7 +230,7 @@
+ 					$(eap_sources) \
+ 					$(builtin_sources)
+ 
+-src_iwd_LDADD = $(ell_ldadd) -ldl
++src_iwd_LDADD = $(ell_ldadd) -ldl -lm
+ src_iwd_DEPENDENCIES = $(ell_dependencies)
+ 
+ if SIM_HARDCODED
