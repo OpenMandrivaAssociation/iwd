@@ -70,5 +70,6 @@ EOF
 %{_mandir}/man1/iwctl.1.*
 %{_mandir}/man5/iwd.config.5.*
 %{_mandir}/man5/iwd.network.5.*
+%{_mandir}/man7/iwd.debug.7.*
 %{_mandir}/man8/ead.8.*
 %{_mandir}/man8/iwd.8.*
