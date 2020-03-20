@@ -1,7 +1,7 @@
 Summary:	Wireless daemon for Linux
 Name:		iwd
 Version:	1.5
-Release:	1
+Release:	2
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
 Source0:	https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.tar.xz
@@ -51,8 +51,38 @@ cat > %{buildroot}%{_presetdir}/86-iwd.preset << EOF
 enable iwd.service
 EOF
 
+# (tpg) make sure that wpa_supplicant is stop and disabled on update
+%triggerin -- wpa_supplicant
+systemctl disable --now wpa_supplicant.service
+
+# (tpg) make sure that IWD is default backend and restart NM
+# this may be removed or changed after wpa_supplicant go away
+%triggerin -- NetworkManager
+sed -i -e 's/^#wifi.backend=iwd/wifi.backend=iwd/g' /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf
+sed -i -e 's/^wifi.backend=wpa_supplicant/#wifi.backend=wpa_supplicant/g' /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf
+systemctl restart --quiet NetworkManager.service
+
 %post
 %systemd_post iwd.service
+# (tpg) this may be removed or adapted when wpa_supplicant will go away
+if [ $1 = 1 ]; then
+    if [ -e /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf ]; then
+	systemctl disable --now wpa_supplicant.service
+	sed -i -e 's/^#wifi.backend=iwd/wifi.backend=iwd/g' /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf
+	sed -i -e 's/^wifi.backend=wpa_supplicant/#wifi.backend=wpa_supplicant/g' /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf
+	systemctl restart --quiet NetworkManager.service
+    fi
+fi
+
+%preun
+# (tpg) this may be removed or adapted when wpa_supplicant will go away
+if [ $1 = 0 ]; then
+    if [ $(command -v wpa_supplicant) ];
+	sed -i -e 's/^#wifi.backend=iwd/wifi.backend=iwd/g' /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf
+	sed -i -e 's/^wifi.backend=wpa_supplicant/#wifi.backend=wpa_supplicant/g' /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf
+	systemctl restart --quiet NetworkManager.service
+    fi
+fi
 
 %files
 %doc AUTHORS README TODO ChangeLog
