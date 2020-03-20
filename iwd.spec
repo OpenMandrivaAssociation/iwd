@@ -43,6 +43,9 @@ autoreconf -fiv
 %install
 %make_install
 
+# (tpg) do not install it as it break existing user's network configuration
+rm -rf %{buildroot}/lib/systemd/network/80-iwd.link
+
 install -d %{buildroot}%{_presetdir}
 cat > %{buildroot}%{_presetdir}/86-iwd.preset << EOF
 enable iwd.service
@@ -55,7 +58,6 @@ EOF
 %doc AUTHORS README TODO ChangeLog
 %license COPYING
 %{_prefix}/lib/modules-load.d/*.conf
-/lib/systemd/network/80-iwd.link
 %{_bindir}/iwctl
 %{_bindir}/iwmon
 %{_bindir}/hwsim
