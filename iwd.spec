@@ -1,7 +1,7 @@
 Summary:	Wireless daemon for Linux
 Name:		iwd
 Version:	1.5
-Release:	2
+Release:	3
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
 Source0:	https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.tar.xz
@@ -65,7 +65,7 @@ systemctl restart --quiet NetworkManager.service
 %post
 %systemd_post iwd.service
 # (tpg) this may be removed or adapted when wpa_supplicant will go away
-if [ $1 = 1 ]; then
+if [ "$1" = 1 ]; then
     if [ -e /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf ]; then
 	systemctl disable --now wpa_supplicant.service
 	sed -i -e 's/^#wifi.backend=iwd/wifi.backend=iwd/g' /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf
@@ -76,8 +76,8 @@ fi
 
 %preun
 # (tpg) this may be removed or adapted when wpa_supplicant will go away
-if [ $1 = 0 ]; then
-    if [ $(command -v wpa_supplicant) ];
+if [ "$1" = 0 ]; then
+    if [ $(command -v wpa_supplicant) ]; then
 	sed -i -e 's/^#wifi.backend=iwd/wifi.backend=iwd/g' /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf
 	sed -i -e 's/^wifi.backend=wpa_supplicant/#wifi.backend=wpa_supplicant/g' /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf
 	systemctl restart --quiet NetworkManager.service
