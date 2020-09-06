@@ -1,6 +1,6 @@
 Summary:	Wireless daemon for Linux
 Name:		iwd
-Version:	1.8
+Version:	1.9
 Release:	1
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
@@ -87,7 +87,6 @@ fi
 %files
 %doc AUTHORS README TODO ChangeLog
 %license COPYING
-%{_prefix}/lib/modules-load.d/*.conf
 %{_bindir}/iwctl
 %{_bindir}/iwmon
 %{_bindir}/hwsim
@@ -105,3 +104,4 @@ fi
 %{_mandir}/man7/iwd.debug.7.*
 %{_mandir}/man8/ead.8.*
 %{_mandir}/man8/iwd.8.*
+/lib/modules-load.d/pkcs8.conf
