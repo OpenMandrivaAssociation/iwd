@@ -5,10 +5,6 @@ Release:	1
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
 Source0:	https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.tar.xz
-# (tpg) 2019-11-18
-# ld: error: undefined symbol: floor
-# >>> referenced by rrm.c:261 (src/rrm.c:261)
-#Patch0:		iwd-1.1-add-missing-lm.patch
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	readline-devel
 BuildRequires:	asciidoc
@@ -99,8 +95,7 @@ fi
 %{_mandir}/man1/iwmon.1*
 %{_mandir}/man1/hwsim.1.*
 %{_mandir}/man1/iwctl.1.*
-%{_mandir}/man5/iwd.config.5.*
-%{_mandir}/man5/iwd.network.5.*
+%{_mandir}/man/man5/iwd.*.5.*
 %{_mandir}/man7/iwd.debug.7.*
 %{_mandir}/man8/ead.8.*
 %{_mandir}/man8/iwd.8.*
