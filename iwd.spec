@@ -95,7 +95,7 @@ fi
 %{_mandir}/man1/iwmon.1*
 %{_mandir}/man1/hwsim.1.*
 %{_mandir}/man1/iwctl.1.*
-%{_mandir}/man/man5/iwd.*.5.*
+%{_mandir}/man5/iwd.*.5.*
 %{_mandir}/man7/iwd.debug.7.*
 %{_mandir}/man8/ead.8.*
 %{_mandir}/man8/iwd.8.*
