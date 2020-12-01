@@ -8,7 +8,7 @@ Source0:	https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.ta
 # (tpg) 2019-11-18
 # ld: error: undefined symbol: floor
 # >>> referenced by rrm.c:261 (src/rrm.c:261)
-Patch0:		iwd-1.1-add-missing-lm.patch
+#Patch0:		iwd-1.1-add-missing-lm.patch
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	readline-devel
 BuildRequires:	asciidoc
