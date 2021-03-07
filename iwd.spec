@@ -1,6 +1,6 @@
 Summary:	Wireless daemon for Linux
 Name:		iwd
-Version:	1.11
+Version:	1.12
 Release:	1
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
@@ -12,7 +12,7 @@ BuildRequires:	a2x
 BuildRequires:	python-docutils
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd-macros
-BuildRequires:	pkgconfig(ell) >= 0.35
+BuildRequires:	pkgconfig(ell) >= 0.38
 Requires:	dbus
 Requires:	systemd
 
@@ -53,7 +53,7 @@ systemctl disable --now wpa_supplicant.service
 
 # (tpg) make sure that IWD is default backend and restart NM
 # this may be removed or changed after wpa_supplicant go away
-%triggerin -- NetworkManager
+%transfiletriggerpostun -- /usr/lib/NetworkManager/conf.d
 sed -i -e 's/^#wifi.backend=iwd/wifi.backend=iwd/g' /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf
 sed -i -e 's/^wifi.backend=wpa_supplicant/#wifi.backend=wpa_supplicant/g' /usr/lib/NetworkManager/conf.d/00-wifi-backend.conf
 systemctl restart --quiet NetworkManager.service
