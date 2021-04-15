@@ -1,5 +1,5 @@
 # (tpg) workaround for https://git.kernel.org/pub/scm/network/wireless/iwd.git/commit/src/eap.c?id=07eea03ccac1e8c9c9c499ada1f2df49c35c42d9
-%global optflags %{optflags} -Wno-error=implicit-function-declaration
+%global optflags %{optflags} -Wno-implicit-function-declaration
 
 Summary:	Wireless daemon for Linux
 Name:		iwd
