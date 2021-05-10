@@ -1,5 +1,4 @@
-# (tpg) workaround for https://git.kernel.org/pub/scm/network/wireless/iwd.git/commit/src/eap.c?id=07eea03ccac1e8c9c9c499ada1f2df49c35c42d9
-%global optflags %{optflags} -Wno-implicit-function-declaration
+%define _disable_rebuild_configure 1
 
 Summary:	Wireless daemon for Linux
 Name:		iwd
@@ -25,11 +24,10 @@ hardware.
 
 %prep
 %autosetup -p1
-autoreconf -fiv
 
 %build
 %configure \
-  --with-systemd-unitdir=%{_unitdir} \
+  --with-systemd-unitdir="%{_unitdir}" \
   --enable-external-ell \
   --enable-sim-hardcoded \
   --enable-ofono \
