@@ -26,6 +26,10 @@ hardware.
 %autosetup -p1
 
 %build
+# (tpg) intel guys said VLA are the best and they do not care for LLVM/clang
+export CC=gcc
+export CXX=g++
+
 %configure \
   --with-systemd-unitdir="%{_unitdir}" \
   --enable-external-ell \
