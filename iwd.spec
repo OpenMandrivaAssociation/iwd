@@ -2,7 +2,7 @@
 
 Summary:	Wireless daemon for Linux
 Name:		iwd
-Version:	1.18
+Version:	1.19
 Release:	1
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
@@ -13,8 +13,8 @@ BuildRequires:	asciidoc
 BuildRequires:	a2x
 BuildRequires:	python-docutils
 BuildRequires:	pkgconfig(libsystemd)
-BuildRequires:	systemd-macros
-BuildRequires:	pkgconfig(ell) >= 0.40
+BuildRequires:	systemd-rpm-macros
+BuildRequires:	pkgconfig(ell) >= 0.45
 Requires:	dbus
 %systemd_requires
 
@@ -32,6 +32,7 @@ export CXX=g++
 
 %configure \
   --with-systemd-unitdir="%{_unitdir}" \
+  --with-systemd-modloaddir="%{_modulesloaddir}" \
   --enable-external-ell \
   --enable-sim-hardcoded \
   --enable-ofono \
@@ -93,15 +94,15 @@ fi
 %{_bindir}/hwsim
 %{_libexecdir}/iwd
 %{_libexecdir}/ead
+%{_modulesloaddir}/*.conf
 %{_presetdir}/86-iwd.preset
 %{_unitdir}/*.service
 %{_datadir}/dbus-1/system.d/*.conf
 %{_datadir}/dbus-1/system-services/*.service
-%{_mandir}/man1/iwmon.1*
-%{_mandir}/man1/hwsim.1.*
-%{_mandir}/man1/iwctl.1.*
-%{_mandir}/man5/iwd.*.5.*
-%{_mandir}/man7/iwd.debug.7.*
-%{_mandir}/man8/ead.8.*
-%{_mandir}/man8/iwd.8.*
-/lib/modules-load.d/pkcs8.conf
+%doc %{_mandir}/man1/iwmon.1*
+%doc %{_mandir}/man1/hwsim.1.*
+%doc %{_mandir}/man1/iwctl.1.*
+%doc %{_mandir}/man5/iwd.*.5.*
+%doc %{_mandir}/man7/iwd.debug.7.*
+%doc %{_mandir}/man8/ead.8.*
+%doc %{_mandir}/man8/iwd.8.*
