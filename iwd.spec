@@ -14,7 +14,7 @@ BuildRequires:	a2x
 BuildRequires:	python-docutils
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd-rpm-macros
-BuildRequires:	pkgconfig(ell) >= 0.47
+BuildRequires:	pkgconfig(ell) >= 0.48
 Requires:	dbus
 %systemd_requires
 
