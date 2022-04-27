@@ -2,7 +2,7 @@
 
 Summary:	Wireless daemon for Linux
 Name:		iwd
-Version:	1.24
+Version:	1.27
 Release:	1
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
@@ -14,7 +14,7 @@ BuildRequires:	a2x
 BuildRequires:	python-docutils
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd-rpm-macros
-BuildRequires:	pkgconfig(ell) >= 0.48
+BuildRequires:	pkgconfig(ell) >= 0.50
 Requires:	dbus
 %systemd_requires
 
@@ -26,10 +26,6 @@ hardware.
 %autosetup -p1
 
 %build
-# (tpg) intel guys said VLA are the best and they do not care for LLVM/clang
-export CC=gcc
-export CXX=g++
-
 %configure \
   --with-systemd-unitdir="%{_unitdir}" \
   --with-systemd-modloaddir="%{_modulesloaddir}" \
