@@ -2,11 +2,12 @@
 
 Summary:	Wireless daemon for Linux
 Name:		iwd
-Version:	1.27
+Version:	1.28
 Release:	1
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
 Source0:	https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.tar.xz
+Source1:	%{name}.conf
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	readline-devel
 BuildRequires:	asciidoc
@@ -16,6 +17,7 @@ BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd-rpm-macros
 BuildRequires:	pkgconfig(ell) >= 0.50
 Requires:	dbus
+Requires:	wireless-regdb
 %systemd_requires
 
 %description
@@ -41,8 +43,7 @@ hardware.
 %install
 %make_install
 
-# (tpg) do not install it as it break existing user's network configuration
-rm -rf %{buildroot}/lib/systemd/network/80-iwd.link
+install -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/%{name}/%{name}.conf
 
 install -d %{buildroot}%{_presetdir}
 cat > %{buildroot}%{_presetdir}/86-iwd.preset << EOF
@@ -85,12 +86,15 @@ fi
 %files
 %doc AUTHORS README TODO ChangeLog
 %license COPYING
+%dir %{_sysconfdir}/%{name}
+%config(noreplace) %{_sysconfdir}/%{name}/%{name}.conf
 %{_bindir}/iwctl
 %{_bindir}/iwmon
 %{_bindir}/hwsim
 %{_libexecdir}/iwd
 %{_libexecdir}/ead
 %{_modulesloaddir}/*.conf
+%{_systemd_util_dir}/network/80-iwd.link
 %{_presetdir}/86-iwd.preset
 %{_unitdir}/*.service
 %{_datadir}/dbus-1/system.d/*.conf
