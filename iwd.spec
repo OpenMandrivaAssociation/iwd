@@ -2,8 +2,8 @@
 
 Summary:	Wireless daemon for Linux
 Name:		iwd
-Version:	1.28
-Release:	2
+Version:	1.29
+Release:	1
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
 Source0:	https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.tar.xz
@@ -15,7 +15,7 @@ BuildRequires:	a2x
 BuildRequires:	python-docutils
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd-rpm-macros
-BuildRequires:	pkgconfig(ell) >= 0.50
+BuildRequires:	pkgconfig(ell) >= 0.52
 Requires:	dbus
 Requires:	wireless-regdb
 %systemd_requires
