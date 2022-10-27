@@ -2,7 +2,7 @@
 
 Summary:	Wireless daemon for Linux
 Name:		iwd
-Version:	1.29
+Version:	1.30
 Release:	1
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
