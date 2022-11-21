@@ -2,14 +2,14 @@
 
 Summary:	Wireless daemon for Linux
 Name:		iwd
-Version:	1.30
+Version:	2.0
 Release:	1
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
 Source0:	https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.tar.xz
-Source1:	%{name}.conf
+Source1:	main.conf
 BuildRequires:	pkgconfig(dbus-1)
-BuildRequires:	readline-devel
+BuildRequires:	pkgconfig(readline)
 BuildRequires:	asciidoc
 BuildRequires:	a2x
 BuildRequires:	python-docutils
@@ -31,6 +31,7 @@ hardware.
 %configure \
   --with-systemd-unitdir="%{_unitdir}" \
   --with-systemd-modloaddir="%{_modulesloaddir}" \
+  --with-systemd-networkdir=%{_systemd_util_dir}/network \
   --enable-external-ell \
   --enable-sim-hardcoded \
   --enable-ofono \
@@ -43,7 +44,9 @@ hardware.
 %install
 %make_install
 
-install -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/%{name}/%{name}.conf
+mkdir -p %{buildroot}%{_sharedstatedir}/iwd
+mkdir -p %{buildroot}%{_sharedstatedir}/ead
+install -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/%{name}/main.conf
 
 install -d %{buildroot}%{_presetdir}
 cat > %{buildroot}%{_presetdir}/86-iwd.preset << EOF
@@ -87,7 +90,7 @@ fi
 %doc AUTHORS README TODO ChangeLog
 %license COPYING
 %dir %{_sysconfdir}/%{name}
-%config(noreplace) %{_sysconfdir}/%{name}/%{name}.conf
+%config(noreplace) %{_sysconfdir}/%{name}/main.conf
 %{_bindir}/iwctl
 %{_bindir}/iwmon
 %{_bindir}/hwsim
@@ -99,6 +102,8 @@ fi
 %{_unitdir}/*.service
 %{_datadir}/dbus-1/system.d/*.conf
 %{_datadir}/dbus-1/system-services/*.service
+%{_sharedstatedir}/iwd
+%{_sharedstatedir}/ead
 %doc %{_mandir}/man1/iwmon.1*
 %doc %{_mandir}/man1/hwsim.1.*
 %doc %{_mandir}/man1/iwctl.1.*
