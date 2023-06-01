@@ -1,8 +1,9 @@
 %define _disable_rebuild_configure 1
+%global optflags %{optflags} -Oz
 
 Summary:	Wireless daemon for Linux
 Name:		iwd
-Version:	2.4
+Version:	2.5
 Release:	1
 License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
@@ -15,7 +16,7 @@ BuildRequires:	a2x
 BuildRequires:	python-docutils
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd-rpm-macros
-BuildRequires:	pkgconfig(ell) >= 0.55
+BuildRequires:	pkgconfig(ell) >= 0.57
 Requires:	dbus
 Requires:	wireless-regdb
 %systemd_requires
