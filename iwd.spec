@@ -16,7 +16,7 @@ BuildRequires:	a2x
 BuildRequires:	python-docutils
 BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	systemd-rpm-macros
-BuildRequires:	pkgconfig(ell) >= 0.57
+BuildRequires:	pkgconfig(ell) >= 0.58
 Requires:	dbus
 Requires:	wireless-regdb
 %systemd_requires
