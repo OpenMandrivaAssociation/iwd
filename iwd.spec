@@ -9,6 +9,11 @@ License:	LGPLv2+
 URL:		https://lists.01.org/mailman/listinfo/iwd
 Source0:	https://www.kernel.org/pub/linux/network/wireless/%{name}-%{version}.tar.xz
 Source1:	main.conf
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(readline)
 BuildRequires:	asciidoc
